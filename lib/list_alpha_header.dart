@@ -20,6 +20,9 @@ class ListAlphaHeader extends StatelessWidget {
           fontWeight: FontWeight.bold
         ),
       ),
+      decoration: BoxDecoration(
+         color: Colors.green.withOpacity(0.1)
+      ),
     );
   }
 }

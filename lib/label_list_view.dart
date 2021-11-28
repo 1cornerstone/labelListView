@@ -27,7 +27,7 @@ class _LabelListViewState extends State<LabelListView> {
     _controller = ScrollController()
       ..addListener(() {
 
-        print("offset = ${_controller.position.pixels}");
+      //  print("offset = ${_controller.position.pixels}");
 
 
       });
@@ -44,39 +44,51 @@ class _LabelListViewState extends State<LabelListView> {
     return Scaffold(
 
       body:  Container(
-        margin: const EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05 ),
         child: Row(
           children: [
 
             Expanded(
-              child: ListView.builder(
-                   itemCount:_items.length ,
-                  controller: _controller,
-                  itemBuilder: (BuildContext builder,int index){
-                      return Container(
-                        margin: const EdgeInsets.only(left: 15),
-                        child:  (_items[index].length ==1) ?
-                              ListAlphaHeader(text: _items[index][0])
-                              :Container(
-                          padding:  const EdgeInsets.symmetric(vertical: 5,horizontal: 20),
-                          margin: const EdgeInsets.symmetric(vertical: 1),
-                          child: Text(
-                            _items[index],
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w500
-                            ),
-                          ),),
-                        decoration: const BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 1,
-                              color: Colors.black38
-                            )
-                          )
-                        ),
-                      );
+              child: Column(
+                children: [
 
-              })
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15.0),
+                    child: ListAlphaHeader(text:"A"),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount:_items.length ,
+                        controller: _controller,
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (BuildContext builder,int index){
+                          return Container(
+                            margin: const EdgeInsets.only(left: 15),
+                            child:  (_items[index].length ==1) ?
+                            ListAlphaHeader(text: _items[index][0])
+                                :Container(
+                              padding:  const EdgeInsets.symmetric(vertical: 5,horizontal: 20),
+                              margin: const EdgeInsets.symmetric(vertical: 1),
+                              child: Text(
+                                _items[index],
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500
+                                ),
+                              ),),
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        width: 1,
+                                        color: Colors.black38
+                                    )
+                                )
+                            ),
+                          );
+
+                        }),
+                  ),
+                ],
+              ),
             ),
 
             const SideAlphabet()
